@@ -25,7 +25,7 @@
 
 ## 在线试用
 
-> 正式地址待阶段 9 发布后填入，计划为 GitHub Pages：`https://chunzhiyi492-lab.github.io/shichao/`
+[https://chunzhiyi492-lab.github.io/shichao/](https://chunzhiyi492-lab.github.io/shichao/)（GitHub Pages，手机、电脑都能打开）
 
 ## 本地运行
 
