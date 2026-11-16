@@ -149,6 +149,7 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>拾潮</h1>
+        <p className="app-tagline">原作是月亮，你的故事是潮水</p>
       </header>
 
       {tab === 'tide' && <TidePage />}

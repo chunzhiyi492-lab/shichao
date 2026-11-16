@@ -7,12 +7,13 @@ import { useCallback, useEffect, useState } from 'react'
 import { listCards, listForeshadowing, updateForeshadowing } from '../../lib/db'
 import type { Foreshadowing, SettingCard } from '../../lib/types'
 
+// 礁石排布：3 列 × 多行，行距 42px，胶囊变宽后不再左右重叠
 function reefTop(index: number): number {
-  return 200 + (index % 3) * 28
+  return 196 + Math.floor(index / 3) * 42
 }
 
 function reefLeft(index: number): number {
-  return 10 + (index % 4) * 22
+  return 4 + (index % 3) * 31
 }
 
 export default function TidePage() {
@@ -45,10 +46,19 @@ export default function TidePage() {
     <section className="page" aria-label="潮位首页">
       <div className="coast" aria-label="海岸线">
         <div className="sky">
+          <span className="star" style={{ left: '18%', top: '24px' }} aria-hidden="true" />
+          <span className="star" style={{ left: '38%', top: '52px', opacity: 0.35 }} aria-hidden="true" />
+          <span className="star" style={{ left: '58%', top: '18px', opacity: 0.45 }} aria-hidden="true" />
           <span className="moon" aria-hidden="true">
             🌙
           </span>
         </div>
+        {/* 后层水面：更淡、更慢、水位低 5%，和前层错开才有纵深 */}
+        <div
+          className="water-back"
+          style={{ transform: `translateY(${100 - level + 5}%)` }}
+          aria-hidden="true"
+        />
         <div
           className="water"
           style={{ transform: `translateY(${100 - level}%)` }}
@@ -59,7 +69,11 @@ export default function TidePage() {
             key={reef.id}
             type="button"
             className={reef.status === '已回收' ? 'reef reef-out' : 'reef reef-under'}
-            style={{ left: `${reefLeft(i)}%`, top: `${reefTop(i)}px` }}
+            style={{
+              left: `${reefLeft(i)}%`,
+              top: `${reefTop(i)}px`,
+              transitionDelay: `${i * 70}ms`,
+            }}
             onClick={() => setSelectedId(selectedId === reef.id ? null : reef.id)}
             aria-pressed={selectedId === reef.id}
             aria-label={`${reef.title}（${reef.status}），点开看详情`}
@@ -69,7 +83,9 @@ export default function TidePage() {
         ))}
       </div>
 
-      <p className="tide-sentence">水下还有 {unrecovered.length} 块礁石</p>
+      <p className="tide-sentence">
+        水下还有 <strong className="tide-count">{unrecovered.length}</strong> 块礁石
+      </p>
 
       {selected && (
         <div className="reef-detail">

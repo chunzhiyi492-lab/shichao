@@ -23,12 +23,22 @@
   --space-8: 32px;
   --space-12: 48px;
 
-  /* 圆角：克制，只给控件一点点，不给内容卡片统一圆角 */
+  /* 圆角：克制，只给控件一点点；浮起的面板可以稍大一档 */
   --radius: 6px;
+  --radius-lg: 12px;
 
-  /* 动效：只用 transform 与 opacity，600–900ms 缓出 */
+  /* 阴影：只用深水墨的低透明度，不引入新颜色 */
+  --shadow-soft: 0 1px 2px rgb(30 42 40 / 0.06), 0 8px 24px rgb(30 42 40 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(30 42 40 / 0.08), 0 16px 32px rgb(30 42 40 / 0.12);
+
+  /* 动效：只用 transform 与 opacity，600–900ms 缓出
+     （Motion / Anime.js 的用法：大起伏用缓出，小交互用带一点回弹的弹簧感，
+     多个元素依次动用时间差；都不新加依赖，纯 CSS 实现） */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
   --duration-tide: 800ms;
+  --duration-page: 300ms;
+  --duration-quick: 200ms;
 }
 
 /* 白天：泡沫白底、深水墨字、水是深青的 */
