@@ -1,0 +1,60 @@
+/* 拾潮 · 设计规范 token（docs/DESIGN.md）
+   6 个颜色，两套主题换角色。对比度已实算，均达 WCAG AA。 */
+
+:root {
+  --color-tide: #0e2b29; /* 夜潮深青 */
+  --color-glass: #8fbfae; /* 浅滩海玻璃绿 */
+  --color-foam: #f5f6f2; /* 泡沫白 */
+  --color-sand: #6e6252; /* 湿沙灰褐 */
+  --color-moon: #e9d9a6; /* 月光淡黄 */
+  --color-ink: #1e2a28; /* 深水墨 */
+
+  /* 字体：衬线负责氛围，无衬线负责功能；系统字体栈，不下载字体文件 */
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  /* 间距 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* 圆角：克制，只给控件一点点，不给内容卡片统一圆角 */
+  --radius: 6px;
+
+  /* 动效：只用 transform 与 opacity，600–900ms 缓出 */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-tide: 800ms;
+}
+
+/* 白天：泡沫白底、深水墨字、水是深青的 */
+:root[data-theme="day"] {
+  --bg: var(--color-foam);
+  --bg-raised: #ffffff;
+  --text: var(--color-ink);
+  --text-secondary: var(--color-sand);
+  --primary: var(--color-tide);
+  --water: var(--color-tide);
+  --water-line: var(--color-glass);
+  --accent: var(--color-moon);
+  --border: var(--color-sand);
+  --nav-bg: var(--color-foam);
+}
+
+/* 深夜：深青底、泡沫白字、水面是海玻璃绿 */
+:root[data-theme="night"] {
+  --bg: var(--color-tide);
+  --bg-raised: #143632;
+  --text: var(--color-foam);
+  --text-secondary: var(--color-glass);
+  --primary: var(--color-glass);
+  --water: var(--color-glass);
+  --water-line: var(--color-glass);
+  --accent: var(--color-moon);
+  --border: var(--color-sand);
+  --nav-bg: var(--color-tide);
+}

@@ -1,0 +1,86 @@
+/* 拾潮 · 基础样式：手机优先，键盘焦点可见，尊重减少动态效果 */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* 键盘焦点必须看得见 */
+:focus-visible {
+  outline: 2px solid var(--color-moon);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 主按钮：写明会发生什么 */
+.btn-primary {
+  background: var(--primary);
+  color: var(--bg);
+  border: 0;
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-5);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* 列表不用一模一样的圆角卡片，用细线分隔 */
+.rule-list > * + * {
+  border-top: 1px solid var(--border);
+}
+
+.empty-state {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* 减少动态效果：关掉起伏与露出动画，改静态 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
