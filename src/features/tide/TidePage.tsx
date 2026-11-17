@@ -50,7 +50,15 @@ export default function TidePage() {
           <span className="star" style={{ left: '38%', top: '52px', opacity: 0.35 }} aria-hidden="true" />
           <span className="star" style={{ left: '58%', top: '18px', opacity: 0.45 }} aria-hidden="true" />
           <span className="moon" aria-hidden="true">
-            🌙
+            <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+              <defs>
+                <mask id="moon-mask">
+                  <rect width="32" height="32" fill="white" />
+                  <circle cx="23" cy="11" r="11" fill="black" />
+                </mask>
+              </defs>
+              <circle cx="16" cy="16" r="12" fill="#E9D9A6" mask="url(#moon-mask)" />
+            </svg>
           </span>
         </div>
         {/* 后层水面：更淡、更慢、水位低 5%，和前层错开才有纵深 */}
@@ -63,7 +71,16 @@ export default function TidePage() {
           className="water"
           style={{ transform: `translateY(${100 - level}%)` }}
           aria-hidden="true"
-        />
+        >
+          {/* 远岸、月光倒影与涟漪都长在水面上，跟着水位一起动；
+              水面是整块向下平移的，海岸只露出它的上半截，所以涟漪只能放在
+              上 35% 以内（水位最低时也看得见），bottom 定位会被裁掉 */}
+          <span className="distant-shore" aria-hidden="true" />
+          <span className="moon-reflection" aria-hidden="true" />
+          <span className="ripple" style={{ top: '10%', left: '12%', width: '46%', opacity: 0.5 }} aria-hidden="true" />
+          <span className="ripple" style={{ top: '20%', left: '48%', width: '34%', opacity: 0.35 }} aria-hidden="true" />
+          <span className="ripple" style={{ top: '30%', left: '8%', width: '60%', opacity: 0.25 }} aria-hidden="true" />
+        </div>
         {visible.map((reef, i) => (
           <button
             key={reef.id}

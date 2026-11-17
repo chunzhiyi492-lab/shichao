@@ -97,15 +97,50 @@
   inset: 0;
 }
 
-/* 月亮带一点光晕（box-shadow 的模糊，不是渐变装饰） */
+/* 月亮：SVG 弯月（不用 emoji，各设备长得一样），带一点光晕 */
 .coast .moon {
   position: absolute;
   top: var(--space-4);
   right: var(--space-5);
-  font-size: 28px;
-  line-height: 1;
+  line-height: 0;
   border-radius: 50%;
-  box-shadow: 0 0 24px 8px rgb(233 217 166 / 0.35);
+  box-shadow: 0 0 18px 4px rgb(233 217 166 / 0.45);
+}
+
+.coast .moon svg {
+  display: block;
+}
+
+/* 远岸：水线上面探出来的一点小山丘，让海岸线不只有水和天 */
+.coast .distant-shore {
+  position: absolute;
+  top: -18px;
+  left: 8%;
+  width: 46%;
+  height: 36px;
+  background: var(--color-glass);
+  opacity: 0.35;
+  border-radius: 50%;
+}
+
+/* 月光倒影：水面上一道竖着的、模糊的月光柱 */
+.coast .moon-reflection {
+  position: absolute;
+  top: 4px;
+  right: 26px;
+  width: 30px;
+  height: 84px;
+  background: var(--color-moon);
+  opacity: 0.28;
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+/* 涟漪：水面上的细线，越往下越淡 */
+.coast .ripple {
+  position: absolute;
+  height: 1px;
+  background: var(--water-line);
 }
 
 /* 天上几颗很淡的星，只用 opacity，不闪 */
